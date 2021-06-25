@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Pixel Online</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="notMyCode.js"></script>
+    <script src="popup.js"></script>
+    <script src="tools.js"></script>
+    <script src="main.js"></script>
+</head>
+<body onload="init()">
+    <div id="menudiv">
+        <button class="tool" onclick="selectTool('pen')" id="pen">pen</button>
+        <button class="tool" onclick="selectTool('dropper')" id="dropper">dropper</button>
+        <button class="tool" onclick="selectTool('eraser')" id="eraser">eraser</button>
+        <button class="tool" onclick="selectTool('grid')" id="grid">grid</button>
+        <input type="color" id="colorPicker" class="tool">
+        <br>
+        <div id="importDiv">
+            File Name:
+            <br>
+            <input type="text" id="fileName" prompt="the name of your file">
+            <br>
+            <button onclick="selectTool('save')">save/export</button>
+            <br>
+            Import .pxlo file:
+            <br>
+            <input type="file" style="background-color: white;" accept=".pxlo" id="import" onchange='openFile(event)'>
+        </div>
+        <br>
+    </div>
+    <center>
+        <div id="popup">
+            <span id="popupTitle"></span>
+            <br>
+            <span id="popupText"></span>
+            <span id="popupButtons"></span>
+        </div>
+        <canvas id="drawingCanvas" onmousedown="clicking = true" onmouseup="clicking = false"></canvas>
+    </center>
+    <canvas id="downloadCanvas" style="visibility: hidden;"></canvas>
+</body>
+</html> 
