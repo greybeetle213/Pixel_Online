@@ -37,6 +37,7 @@ function selectTool(newTool){
       download($("#fileName").val()+".pxlo", JSON.stringify(drawing))
     },
     function(){
+      saveCtx.clearRect(0,0,saveCanvas.width,saveCanvas.height)
       for(y = 0; y < drawing.height; y ++){
         for(x = 0; x < drawing.width; x ++){
           saveCtx.fillStyle = drawing.pixels[y][x]
@@ -60,6 +61,7 @@ function usePen(event){
   ctx.fillStyle = $("#colorPicker").val()
   drawing.pixels[Math.floor(y/pixelSize)][Math.floor(x/pixelSize)] = ctx.fillStyle
   ctx.fillRect(Math.floor(x/pixelSize)*pixelSize-1, Math.floor(y/pixelSize)*pixelSize-1, pixelSize+1, pixelSize+1)
+  reloadDrawing()
 }
 
 function useEraser(event){
