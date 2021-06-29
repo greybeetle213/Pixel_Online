@@ -81,6 +81,49 @@ function useDropper(event){
   }
 }
 
+function fillLine(xOffset, yOffset){
+  for(i = 0; i < replaceCoords.length; i++){
+    if(replaceCoords[i][1]+xOffset > 0 && replaceCoords[i][1]+xOffset < drawing.height){
+      if(drawing.pixels[replaceCoords[i][1]+xOffset][replaceCoords[i][0]+yOffset] === colorToReplace){
+        newReaplaceCoords.push([replaceCoords[i][0]+yOffset, replaceCoords[i][1]+xOffset])
+        drawing.pixels[replaceCoords[i][1]+xOffset][replaceCoords[i][0]+yOffset] = $("#colorPicker").val()
+      }
+    }
+    newReaplaceCoords[newReaplaceCoords.indexOf(replaceCoords[i])] = false
+  }
+  replaceCoords = []
+  for(i = 0; i < newReaplaceCoords.length; i ++){
+    if(newReaplaceCoords[i] !== false){
+      replaceCoords.push(newReaplaceCoords[i])
+    }
+  }
+  newReaplaceCoords = JSON.parse(JSON.stringify(replaceCoords))
+}
+
+
+function useBucket(event){
+  var x = event.pageX - $('#drawingCanvas').offset().left // get the x pos relitive to the canvas
+  var y = event.pageY - $('#drawingCanvas').offset().top
+  x /= pixelSize
+  x = Math.floor(x)
+  y /= pixelSize
+  y = Math.floor(y)
+  colorToReplace = drawing.pixels[y][x]
+  drawing.pixels[y][x] = $("#colorPicker").val()
+  replaceCoords = [[x,y]]
+  newReaplaceCoords = JSON.parse(JSON.stringify(replaceCoords))
+  loops = 0
+
+  while(replaceCoords.length !== 0 && loops < 100){
+    fillLine(0,-1)
+    fillLine(0, 1)
+    fillLine(1,0)
+    fillLine(-1, 0)
+    loops ++
+  }
+  reloadDrawing()
+}
+
 function clearTools(){
   $("#pen").css("border", "1px inset black")
   $("#dropper").css("border", "1px inset black")

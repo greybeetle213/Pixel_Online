@@ -24,7 +24,7 @@ function init(){
     }
   }
   $('#drawingCanvas').mousemove(function (event) { update (event) })
-  $('#drawingCanvas').click(function (event) {clicking=true; update (event); clicking=false})
+  $('#drawingCanvas').click(function (event) {clicking=true; update (event, false); clicking=false})
   $('body').keypress(function(event){
     if(event.key === 'z' && undos.length > 1){
       drawing = JSON.parse(undos.pop())
@@ -33,7 +33,7 @@ function init(){
 });
   update()
 }
-function update(event){
+function update(event, drag=true){
   if(clicking){
     if(event !== undefined){
       if(JSON.stringify(drawing) !== undos[undos.length-1]){
@@ -48,6 +48,8 @@ function update(event){
         useDropper(event)
       }else if(currentTool === "eraser"){
         useEraser(event)
+      }else if(currentTool === "bucket" && !drag){
+        useBucket(event)
       }
     }
 
