@@ -17,10 +17,14 @@
         <button class="tool" onclick="selectTool('dropper')" id="dropper">dropper</button>
         <button class="tool" onclick="selectTool('eraser')" id="eraser">eraser</button>
         <button class="tool" onclick="selectTool('bucket')" id="bucket">bucket</button>
+        <button class="tool" onclick="selectTool('paint')" id="paint">paint</button>
         <button class="tool" onclick="selectTool('grid')" id="grid">grid</button>
+        <button class="tool" onclick="selectTool('paint_bucket')" id="paint_bucket">paint bucket</button>
         <input type="color" id="colorPicker" class="tool">
+    </div>
+    <div id="rightMenu">
         <br>
-        <div id="importDiv">
+        <div class="toolSet">
             File Name:
             <br>
             <input type="text" id="fileName" prompt="the name of your file">
@@ -32,6 +36,17 @@
             <input type="file" style="background-color: white;" accept=".pxlo" id="import" onchange='openFile(event)'>
         </div>
         <br>
+        <div class="toolSet">
+            size: <input type="number" min="0" max="128" id="width">
+            <br>
+            <button onclick="resizeDrawing()">confirm</button>
+        </div>
+        <br>
+        <div class="toolSet" id="noiseConfig" style="visibility: hidden;">
+            Paint Variation:
+            <br>
+            R:<input type="number" id="rNoise" min="0" max="99" value="5"> G:<input type="number" id="gNoise" min="0" max="99" value="5"> B: <input type="number" id="bNoise" min="0" max="99" value="5">
+        </div>
     </div>
     <center>
         <div id="popup">

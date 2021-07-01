@@ -30,7 +30,24 @@ function init(){
       drawing = JSON.parse(undos.pop())
       reloadDrawing()
     }
-});
+  });
+  $(document).keypress(function(event){
+    if(event.key === "p"){
+      selectTool("pen")
+    }
+    if(event.key === "b"){
+      selectTool("bucket")
+    }
+    if(event.key === "d"){
+      selectTool("dropper")
+    }
+    if(event.key === "e"){
+      selectTool("eraser")
+    }
+    if(event.key === "n"){
+      selectTool("paint")
+    }
+  })
   update()
 }
 function update(event, drag=true){
@@ -50,6 +67,10 @@ function update(event, drag=true){
         useEraser(event)
       }else if(currentTool === "bucket" && !drag){
         useBucket(event)
+      }else if(currentTool === "paint"){
+        paint(event)
+      }else if(currentTool === "paint_bucket"){
+        paintBucket(event)
       }
     }
 
