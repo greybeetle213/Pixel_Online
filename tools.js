@@ -28,13 +28,13 @@ function selectTool(newTool){
     currentTool = "paint"
     clearTools()
     $("#paint").css("border", "5px inset #00FF00")
-    $("#noiseConfig").css("visibility", "visible")
+    $("#noiseConfig").css("display", "inherit")
   }
   if(newTool === "paint_bucket"){
     currentTool = "paint_bucket"
     clearTools()
     $("#paint_bucket").css("border", "5px inset #00FF00")
-    $("#noiseConfig").css("visibility", "visible")
+    $("#noiseConfig").css("display", "inherit")
   }
   if(newTool === "grid"){
     grid = !grid
@@ -194,7 +194,7 @@ function clearTools(){
   $("#eraser").css("border", "1px inset black")
   $("#paint").css("border", "1px inset black")
   $("#paint_bucket").css("border", "1px inset black")
-  $("#noiseConfig").css("visibility", "hidden")
+  $("#noiseConfig").css("display", "none")
 }
 
 function reloadDrawing(){
