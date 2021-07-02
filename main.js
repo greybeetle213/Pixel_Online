@@ -1,3 +1,9 @@
+function undo(){
+  if(undo.length > 1){
+     drawing = JSON.parse(undos.pop())
+     reloadDrawing()
+  }
+}
 function init(){
   drawing = {
     width: 16,
@@ -25,10 +31,9 @@ function init(){
   }
   $('#drawingCanvas').mousemove(function (event) { update (event) })
   $('#drawingCanvas').click(function (event) {clicking=true; update (event, false); clicking=false})
-  $('body').keypress(function(event){
-    if(event.key === 'z' && undos.length > 1){
-      drawing = JSON.parse(undos.pop())
-      reloadDrawing()
+    $('body').keypress(function(event){
+    if(event.key === 'z'){
+      undo()
     }
   });
   $(document).keypress(function(event){
