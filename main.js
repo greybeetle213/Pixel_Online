@@ -1,5 +1,5 @@
 function undo(){
-  if(undo.length > 1){
+  if(undos.length > 1){
      drawing = JSON.parse(undos.pop())
      reloadDrawing()
   }
