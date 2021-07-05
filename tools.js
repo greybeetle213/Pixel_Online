@@ -142,7 +142,7 @@ function paint(event){
   reloadDrawing()
 }
 
-function paintBucket(){
+function paintBucket(event){
   var x = event.pageX - $('#drawingCanvas').offset().left // get the x pos relitive to the canvas
   var y = event.pageY - $('#drawingCanvas').offset().top
   x /= pixelSize
@@ -176,14 +176,17 @@ function useBucket(event){
   replaceCoords = [[x,y]]
   newReaplaceCoords = JSON.parse(JSON.stringify(replaceCoords))
   loops = 0
-  while(replaceCoords.length !== 0 && loops < 100){
-    fillLine(0,-1)
-    fillLine(0, 1)
-    fillLine(1,0)
-    fillLine(-1, 0)
-    loops ++
+  if(colorToReplace !== ctx.fillStyle){
+    while(replaceCoords.length !== 0 && loops < 100){
+      fillLine(0,-1)
+      fillLine(0, 1)
+      fillLine(1,0)
+      fillLine(-1, 0)
+      loops ++
+      console.log(loops)
+    }
+    reloadDrawing()
   }
-  reloadDrawing()
 }
 
 function clearTools(){
