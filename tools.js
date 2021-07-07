@@ -102,7 +102,7 @@ function fillLine(xOffset, yOffset){
         drawing.pixels[replaceCoords[i][1]+xOffset][replaceCoords[i][0]+yOffset] = $("#colorPicker").val()
       }
     }
-    if(timedOut){
+    if(Date.now()-startTime > 500){
       break
     }
     newReaplaceCoords[newReaplaceCoords.indexOf(replaceCoords[i])] = false
@@ -112,7 +112,7 @@ function fillLine(xOffset, yOffset){
     if(newReaplaceCoords[i] !== false){
       replaceCoords.push(newReaplaceCoords[i])
     }
-    if(timedOut){
+    if(Date.now()-startTime > 500){
       break
     }
   }
