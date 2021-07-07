@@ -1,72 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' type='text/css' href='style.css'>
     <title>Pixel Online</title>
-    <link rel="icon" href="icons/favicon.png"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="notMyCode.js"></script>
-    <script src="popup.js"></script>
-    <script src="tools.js"></script>
-    <script src="main.js"></script>
+    <link rel='icon' href='icons/favicon.png'/>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='notMyCode.js'></script>
+    <script src='popup.js'></script>
+    <script src='tools.js'></script>
+    <script src='main.js'></script>
 </head>
-<body onload="init()" id="body">
-    <div id="menudiv">
-        <img src="icons/pixel_online_logo.png" class="toolImg" style="position: absolute; bottom: 1%;">
+<body onload='init()' id='body'>
+    <div id='menudiv'>
+        <img src='icons/pixel_online_logo.png' class='toolImg' style='position: absolute; bottom: 1%;'>
         <br>
-        <button class="tool" onclick="selectTool('pen')" id="pen"><img src="icons/pen.png" class="toolImg"></button>
-        <button class="tool" onclick="selectTool('dropper')" id="dropper"><img src="icons/dropper.png" class="toolImg"></button>
-        <button class="tool" onclick="selectTool('eraser')" id="eraser"><img src="icons/eraser.png" class="toolImg"></button>
-        <button class="tool" onclick="selectTool('bucket')" id="bucket"><img src="icons/bucket.png" class="toolImg"></button>
-        <button class="tool" onclick="selectTool('paint')" id="paint"><img src="icons/paint.png" class="toolImg"></button>
-        <button class="tool" onclick="selectTool('paint_bucket')" id="paint_bucket"><img src="icons/paint_bucket.png" class="toolImg"></button>
-        <button class="tool" onclick="selectTool('grid')" id="grid"><img src="icons/grid.png" class="toolImg"></button>
-        <button class="tool" id="zoomIn" onclick="zoom(20)"><img src="icons/zoom in.png" class="toolImg"></button>
-        <button class="tool" id="zoomOut" onclick="zoom(-20)"><img src="icons/zoom out.png" class="toolImg"></button>
-        <input type="color" id="colorPicker" class="tool">
+        <button class='tool' onclick='selectTool('pen')' id='pen'><img src='icons/pen.png' class='toolImg'></button>
+        <button class='tool' onclick='selectTool('dropper')' id='dropper'><img src='icons/dropper.png' class='toolImg'></button>
+        <button class='tool' onclick='selectTool('eraser')' id='eraser'><img src='icons/eraser.png' class='toolImg'></button>
+        <button class='tool' onclick='selectTool('bucket')' id='bucket'><img src='icons/bucket.png' class='toolImg'></button>
+        <button class='tool' onclick='selectTool('paint')' id='paint'><img src='icons/paint.png' class='toolImg'></button>
+        <button class='tool' onclick='selectTool('paint_bucket')' id='paint_bucket'><img src='icons/paint_bucket.png' class='toolImg'></button>
+        <button class='tool' onclick='selectTool('grid')' id='grid'><img src='icons/grid.png' class='toolImg'></button>
+        <button class='tool' id='zoomIn' onclick='zoom(20)'><img src='icons/zoom in.png' class='toolImg'></button>
+        <button class='tool' id='zoomOut' onclick='zoom(-20)'><img src='icons/zoom out.png' class='toolImg'></button>
+        <input type='color' id='colorPicker' class='tool'>
     </div>
-    <div id="rightMenu">
-        <a href="#drawingCanvas">test</a>
+    <div id='rightMenu'>
         <br>
-        <div class="toolSet">
+        <div class='toolSet'>
             File Name:
             <br>
-            <input type="text" id="fileName" prompt="the name of your file">
+            <input type='text' id='fileName' prompt='the name of your file'>
             <br>
-            <button onclick="selectTool('save')">save/export</button>
+            <button onclick='selectTool('save')'>save/export</button>
             <br>
             Import .pxlo file:
             <br>
-            <input type="file" style="background-color: white;" accept=".pxlo" id="import" onchange='openFile(event)'>
+            <input type='file' style='background-color: white;' accept='.pxlo' id='import' onchange='openFile(event)'>
         </div>
         <br>
-        <div class="toolSet">
-            size: <input type="number" min="0" max="128" id="width">
+        <div class='toolSet'>
+            size: <input type='number' min='0' max='128' id='width'>
             <br>
-            <button onclick="resizeDrawing()">confirm</button>
+            <button onclick='resizeDrawing()'>confirm</button>
         </div>
         <br>
-        <div class="toolSet" id="noiseConfig" style="display: none;">
+        <div class='toolSet' id='noiseConfig' style='display: none;'>
             Paint Variation:
             <br>
-            R:<input type="number" id="rNoise" min="0" max="99" value="5"> G:<input type="number" id="gNoise" min="0" max="99" value="5"> B: <input type="number" id="bNoise" min="0" max="99" value="5">
+            R:<input type='number' id='rNoise' min='0' max='99' value='5'> G:<input type='number' id='gNoise' min='0' max='99' value='5'> B: <input type='number' id='bNoise' min='0' max='99' value='5'>
         </div>
-        <button onclick="undo()">undo</button>
-        <a style="position: absolute; bottom: 1%; color: lightskyblue;" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSf9Vrz5XhAPukeJwOZcLJXfITquxAZ1xHvDI9XsXngWJsK4NA/viewform?usp=sf_link">Have feedback/Found a bug?</a>
+        <button onclick='undo()'>undo</button>
+        <a style='position: absolute; bottom: 1%; color: lightskyblue;' target='_blank' href='https://docs.google.com/forms/d/e/1FAIpQLSf9Vrz5XhAPukeJwOZcLJXfITquxAZ1xHvDI9XsXngWJsK4NA/viewform?usp=sf_link'>Have feedback/Found a bug?</a>
     </div>
-    <div style="width: 200vw; display: inline-block;">
+    <div style='width: 200vw; display: inline-block;'>
     <center>
-        <div id="popup">
-            <span id="popupTitle"></span>
+        <div id='popup'>
+            <span id='popupTitle'></span>
             <br>
-            <span id="popupText"></span>
-            <span id="popupButtons"></span>
+            <span id='popupText'></span>
+            <span id='popupButtons'></span>
         </div>
-        <canvas id="drawingCanvas" onmousedown="clicking = true" onmouseup="clicking = false"></canvas>
+        <canvas id='drawingCanvas' onmousedown='clicking = true' onmouseup='clicking = false'></canvas>
     </center>
     </div> <!--so you can scroll left and right when the canvas is obscured by the menus-->
-    <canvas id="downloadCanvas" style="display: none;"></canvas>
+    <canvas id='downloadCanvas' style='display: none;'></canvas>
 </body>
 </html> 
