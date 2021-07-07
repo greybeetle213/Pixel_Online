@@ -102,12 +102,18 @@ function fillLine(xOffset, yOffset){
         drawing.pixels[replaceCoords[i][1]+xOffset][replaceCoords[i][0]+yOffset] = $("#colorPicker").val()
       }
     }
+    if(timedOut){
+      break
+    }
     newReaplaceCoords[newReaplaceCoords.indexOf(replaceCoords[i])] = false
   }
   replaceCoords = []
   for(i = 0; i < newReaplaceCoords.length; i ++){
     if(newReaplaceCoords[i] !== false){
       replaceCoords.push(newReaplaceCoords[i])
+    }
+    if(timedOut){
+      break
     }
   }
   newReaplaceCoords = JSON.parse(JSON.stringify(replaceCoords))
@@ -175,18 +181,22 @@ function useBucket(event){
   drawing.pixels[y][x] = $("#colorPicker").val()
   replaceCoords = [[x,y]]
   newReaplaceCoords = JSON.parse(JSON.stringify(replaceCoords))
+  timedOut = false
   loops = 0
-  if(colorToReplace !== ctx.fillStyle){
-    while(replaceCoords.length !== 0 && loops < 100){
-      fillLine(0,-1)
-      fillLine(0, 1)
-      fillLine(1,0)
-      fillLine(-1, 0)
-      loops ++
-      console.log(loops)
-    }
-    reloadDrawing()
+  startTime = Date.now()
+  while(replaceCoords.length !== 0 && Date.now()-startTime < 500 && loops <100){
+    fillLine(0,-1)
+    fillLine(0, 1)
+    fillLine(1,0)
+    fillLine(-1, 0)
+    console.log("loop")
+    loops ++
   }
+  console.log("done")
+  if(Date.now()-startTime > 500){
+    console.log("Error: timedOut")
+  }
+  reloadDrawing()
 }
 
 function clearTools(){
@@ -239,4 +249,14 @@ function resizeDrawing(){
       }
     }
   })
+  reloadDrawing()
+}
+function zoom(newZoomAmount){
+  zoomAmount += newZoomAmount
+  document.getElementById("drawingCanvas").height = window.innerHeight - 50 + zoomAmount
+  document.getElementById("drawingCanvas").width = window.innerHeight - 50 + zoomAmount
+  canvas = document.getElementById('drawingCanvas')
+  ctx = document.getElementById('drawingCanvas').getContext('2d')
+  pixelSize = canvas.width/drawing.width
+  reloadDrawing()
 }

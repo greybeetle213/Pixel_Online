@@ -7,7 +7,7 @@ body{
     height: 80vh;
     width: 20%;
     float: left;
-    position: absolute;
+    position: fixed;
 }
 #rightMenu{
     background-color: #001B4D;
@@ -16,7 +16,7 @@ body{
     width: 20%;
     float: right;
     right: 0%;
-    position: absolute;
+    position: fixed;
 }
 .tool{
     background-color: azure;
@@ -46,7 +46,7 @@ body{
 #popup{
     background-color: white; 
     border: 5px inset black; 
-    position: absolute;
+    position: fixed;
     min-width: 30vw;
     min-height: 30vh;
     max-width: 30vw;

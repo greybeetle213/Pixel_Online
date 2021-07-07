@@ -23,6 +23,8 @@ function init(){
   saveCtx = document.getElementById("downloadCanvas").getContext("2d")
   currentTool = "pen"
   undos = [JSON.stringify(drawing)]
+  zoomAmount = 0
+  timesFilled = 0//used for timeouts
   for(y = 0;y < drawing.height; y ++){
     drawing.pixels[y] = []
     for(x = 0;x < drawing.width; x ++){
@@ -53,6 +55,8 @@ function init(){
       selectTool("paint")
     }
   })
+  document.body.scrollLeft = window.innerWidth / 2
+  document.documentElement.scrollLeft = window.innerWidth / 2
   update()
 }
 function update(event, drag=true){

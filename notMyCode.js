@@ -33,3 +33,9 @@ function addHexColor(c1, c2) {
   while (hexStr.length < 6) { hexStr = '0' + hexStr; } // Zero pad.
   return hexStr;
 }
+
+window.onscroll = function(e) {
+  // print "false" if direction is down and "true" if up
+  console.log(this.oldScroll > this.scrollY);
+  this.oldScroll = this.scrollY;
+}

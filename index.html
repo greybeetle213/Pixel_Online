@@ -12,7 +12,7 @@
     <script src="tools.js"></script>
     <script src="main.js"></script>
 </head>
-<body onload="init()">
+<body onload="init()" id="body">
     <div id="menudiv">
         <img src="icons/pixel_online_logo.png" class="toolImg" style="position: absolute; bottom: 1%;">
         <br>
@@ -23,9 +23,12 @@
         <button class="tool" onclick="selectTool('paint')" id="paint"><img src="icons/paint.png" class="toolImg"></button>
         <button class="tool" onclick="selectTool('paint_bucket')" id="paint_bucket"><img src="icons/paint_bucket.png" class="toolImg"></button>
         <button class="tool" onclick="selectTool('grid')" id="grid"><img src="icons/grid.png" class="toolImg"></button>
+        <button class="tool" id="zoomIn" onclick="zoom(20)"><img src="icons/zoom in.png" class="toolImg"></button>
+        <button class="tool" id="zoomOut" onclick="zoom(-20)"><img src="icons/zoom out.png" class="toolImg"></button>
         <input type="color" id="colorPicker" class="tool">
     </div>
     <div id="rightMenu">
+        <a href="#drawingCanvas">test</a>
         <br>
         <div class="toolSet">
             File Name:
@@ -53,6 +56,7 @@
         <button onclick="undo()">undo</button>
         <a style="position: absolute; bottom: 1%; color: lightskyblue;" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSf9Vrz5XhAPukeJwOZcLJXfITquxAZ1xHvDI9XsXngWJsK4NA/viewform?usp=sf_link">Have feedback/Found a bug?</a>
     </div>
+    <div style="width: 200vw; display: inline-block;">
     <center>
         <div id="popup">
             <span id="popupTitle"></span>
@@ -62,6 +66,7 @@
         </div>
         <canvas id="drawingCanvas" onmousedown="clicking = true" onmouseup="clicking = false"></canvas>
     </center>
-    <canvas id="downloadCanvas" style="visibility: hidden;"></canvas>
+    </div> <!--so you can scroll left and right when the canvas is obscured by the menus-->
+    <canvas id="downloadCanvas" style="display: none;"></canvas>
 </body>
 </html> 
