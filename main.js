@@ -92,7 +92,7 @@ function update (event, drag = true) {
     for (i = 0; i < drawing.height; i++) {
       ctx.beginPath()
       ctx.moveTo(0, i * pixelSize)
-      ctx.lineTo(canvas.height, i * pixelSize)
+      ctx.lineTo(canvas.width, i * pixelSize)
       ctx.stroke()
     }
   }

@@ -23,6 +23,7 @@ const openFile = function (event) {
       function () {
         drawing = JSON.parse(text)
         reloadDrawing()
+        zoom(0)
       })
   }
   reader.readAsText(input.files[0])

@@ -226,18 +226,18 @@ function resizeDrawing () {
     function () {
       drawing = {
         width: $('#width').val(),
-        height: $('#width').val(),
+        height: $('#height').val(),
         pixels: []
       }
       grid = true
       clicking = false
-      document.getElementById('drawingCanvas').height = window.innerHeight - 50
       document.getElementById('drawingCanvas').width = window.innerHeight - 50
+      pixelSize = canvas.width / drawing.width
+      document.getElementById('drawingCanvas').height = pixelSize*drawing.height
       canvas = document.getElementById('drawingCanvas')
       ctx = document.getElementById('drawingCanvas').getContext('2d')
-      pixelSize = canvas.width / drawing.width
-      document.getElementById('downloadCanvas').height = drawing.width
-      document.getElementById('downloadCanvas').width = drawing.height
+      document.getElementById('downloadCanvas').height = drawing.height
+      document.getElementById('downloadCanvas').width = drawing.width
       saveCanvas = document.getElementById('downloadCanvas')
       saveCtx = document.getElementById('downloadCanvas').getContext('2d')
       currentTool = 'pen'
@@ -248,16 +248,17 @@ function resizeDrawing () {
           drawing.pixels[y][x] = '#00000000'
         }
       }
-    })
-  reloadDrawing()
+      reloadDrawing()
+    }
+  )
 }
 
 function zoom (newZoomAmount) {
-  zoomAmount += newZoomAmount
-  document.getElementById('drawingCanvas').height = window.innerHeight - 50 + zoomAmount
-  document.getElementById('drawingCanvas').width = window.innerHeight - 50 + zoomAmount
+  //zoomAmount += newZoomAmount
+  document.getElementById('drawingCanvas').width += newZoomAmount
+  pixelSize = document.getElementById('drawingCanvas').width / drawing.width
+  document.getElementById('drawingCanvas').height = drawing.height * pixelSize
   canvas = document.getElementById('drawingCanvas')
   ctx = document.getElementById('drawingCanvas').getContext('2d')
-  pixelSize = canvas.width / drawing.width
   reloadDrawing()
 }
